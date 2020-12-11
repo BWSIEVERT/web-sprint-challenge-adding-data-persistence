@@ -24,7 +24,13 @@ router.post('/', async (req, res) => {
     try {
         const taskData = req.body
         const task = await Task.createTask(taskData)
-        res.status(200).json(task)
+        if(!req.body.description || !req.body.project_id) {
+            res.status(400).json({
+                message: 'description and matching project_id required'
+            })
+        } else {
+            res.status(200).json(task)
+        }
     } catch (error) {
         res.status(500).json({
             message: error.message

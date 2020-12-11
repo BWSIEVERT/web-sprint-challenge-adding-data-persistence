@@ -36,6 +36,8 @@ exports.up = function(knex) {
             .references('project_id').inTable('project')
             .onDelete('RESTRICT').onUpdate('RESTRICT')
         })
+
+    // Resource table
         .createTable('project_resources', table => {
             table.increments()
                 .primary()
