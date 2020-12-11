@@ -19,6 +19,7 @@ exports.up = function(knex) {
                 .primary()
             table.string('name', 128)
                 .notNullable()
+                .unique()
             table.string('description', 128)
         })
 
@@ -32,9 +33,9 @@ exports.up = function(knex) {
             table.boolean('completed')
                 .defaultTo(0)
             table.integer('project_id')
-            .unsigned().notNullable()
-            .references('project_id').inTable('project')
-            .onDelete('RESTRICT').onUpdate('RESTRICT')
+                .unsigned().notNullable()
+                .references('project_id').inTable('projects')
+                .onDelete('RESTRICT').onUpdate('RESTRICT')
         })
 
     // Resource table

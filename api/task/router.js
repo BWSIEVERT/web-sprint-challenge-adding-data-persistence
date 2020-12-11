@@ -29,6 +29,7 @@ router.post('/', async (req, res) => {
                 message: 'description and matching project_id required'
             })
         } else {
+            task.completed = task.completed === 0 ? false : true
             res.status(200).json(task)
         }
     } catch (error) {
